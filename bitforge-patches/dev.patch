@@ -1,0 +1,104 @@
+diff --git a/dev/build.sh b/dev/build.sh
+index c57741d..92620d8 100755
+--- a/dev/build.sh
++++ b/dev/build.sh
+@@ -5,12 +5,12 @@
+ # to run with Bash: "C:\Program Files\Git\bin\bash.exe" ./dev/build.sh
+ ###
+ 
+-export APP_NAME="VSCodium"
+-export ASSETS_REPOSITORY="VSCodium/vscodium"
+-export BINARY_NAME="codium"
++export APP_NAME="BitForge"
++export ASSETS_REPOSITORY="SoC-One/BitForge"
++export BINARY_NAME="bitforge"
+ export CI_BUILD="no"
+-export GH_REPO_PATH="VSCodium/vscodium"
+-export ORG_NAME="VSCodium"
++export GH_REPO_PATH="SoC-One/BitForge"
++export ORG_NAME="BitForge"
+ export SHOULD_BUILD="yes"
+ export SKIP_ASSETS="yes"
+ export SKIP_BUILD="no"
+@@ -22,8 +22,8 @@ export VSCODE_SKIP_NODE_VERSION_CHECK="yes"
+ while getopts ":ilops" opt; do
+   case "$opt" in
+     i)
+-      export ASSETS_REPOSITORY="VSCodium/vscodium-insiders"
+-      export BINARY_NAME="codium-insiders"
++      export ASSETS_REPOSITORY="SoC-One/BitForge-insiders"
++      export BINARY_NAME="bitforge-insiders"
+       export VSCODE_QUALITY="insider"
+       ;;
+     l)
+diff --git a/dev/build_docker.sh b/dev/build_docker.sh
+index 5faeb41..e8457c1 100755
+--- a/dev/build_docker.sh
++++ b/dev/build_docker.sh
+@@ -3,7 +3,7 @@
+ 
+ exists() { type -t "$1" &> /dev/null; }
+ 
+-export APP_NAME="VSCodium"
++export APP_NAME="BitForge"
+ export CI_BUILD="no"
+ export OS_NAME="linux"
+ export SHOULD_BUILD="yes"
+diff --git a/dev/cli.sh b/dev/cli.sh
+index 7ac5b51..4cd72fa 100755
+--- a/dev/cli.sh
++++ b/dev/cli.sh
+@@ -1,12 +1,12 @@
+ export CARGO_NET_GIT_FETCH_WITH_CLI="true"
+-export VSCODE_CLI_APP_NAME="vscodium"
+-export VSCODE_CLI_BINARY_NAME="codium-server-insiders"
+-export VSCODE_CLI_DOWNLOAD_URL="https://github.com/VSCodium/vscodium-insiders/releases"
++export VSCODE_CLI_APP_NAME="bitforge"
++export VSCODE_CLI_BINARY_NAME="bitforge-server-insiders"
++export VSCODE_CLI_DOWNLOAD_URL="https://github.com/SoC-One/BitForge-insiders/releases"
+ export VSCODE_CLI_QUALITY="insider"
+-export VSCODE_CLI_UPDATE_URL="https://raw.githubusercontent.com/VSCodium/versions/refs/heads/master"
++export VSCODE_CLI_UPDATE_URL="https://raw.githubusercontent.com/SoC-One/versions/refs/heads/master"
+ 
+ cargo build --release --target aarch64-apple-darwin --bin=code
+ 
+-cp target/aarch64-apple-darwin/release/code "../../VSCode-darwin-arm64/VSCodium - Insiders.app/Contents/Resources/app/bin/codium-tunnel-insiders"
++cp target/aarch64-apple-darwin/release/code "../../VSCode-darwin-arm64/BitForge - Insiders.app/Contents/Resources/app/bin/bitforge-tunnel-insiders"
+ 
+-"../../VSCode-darwin-arm64/VSCodium - Insiders.app/Contents/Resources/app/bin/codium-insiders" serve-web
++"../../VSCode-darwin-arm64/BitForge - Insiders.app/Contents/Resources/app/bin/bitforge-insiders" serve-web
+diff --git a/dev/patch.sh b/dev/patch.sh
+index 9ea19cd..c3ef6be 100755
+--- a/dev/patch.sh
++++ b/dev/patch.sh
+@@ -9,7 +9,7 @@ cd vscode || { echo "'vscode' dir not found"; exit 1; }
+ git add .
+ git reset -q --hard HEAD
+ 
+-while [[ -n "$( git log -1 | grep "VSCODIUM HELPER" )" ]]; do
++while [[ -n "$( git log -1 | grep "BITFORGE HELPER" )" ]]; do
+   git reset -q --hard HEAD~
+ done
+ 
+@@ -29,7 +29,7 @@ while [ $# -gt 1 ]; do
+ done
+ 
+ git add .
+-git commit --no-verify -q -m "VSCODIUM HELPER"
++git commit --no-verify -q -m "BITFORGE HELPER"
+ 
+ if [[ "${1}" == *patch ]]; then
+   FILE="../patches/${1}"
+diff --git a/dev/update_patches.sh b/dev/update_patches.sh
+index 4149e12..6b4011f 100755
+--- a/dev/update_patches.sh
++++ b/dev/update_patches.sh
+@@ -26,7 +26,7 @@ check_file() {
+   if [[ -f "${1}" ]]; then
+     git apply --reject "../patches/helper/settings.patch"
+     git add .
+-    git commit --no-verify -q -m "VSCODIUM HELPER"
++    git commit --no-verify -q -m "BITFORGE HELPER"
+ 
+     echo applying patch: "${1}"
+ 

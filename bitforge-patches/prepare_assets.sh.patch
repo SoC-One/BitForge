@@ -1,0 +1,24 @@
+diff --git a/prepare_assets.sh b/prepare_assets.sh
+index 0e7e0b5..dc325ee 100755
+--- a/prepare_assets.sh
++++ b/prepare_assets.sh
+@@ -169,13 +169,13 @@ else
+ 
+   cd ..
+ 
+-  if [[ "${CI_BUILD}" == "no" ]]; then
+-    . ./stores/snapcraft/build.sh
++  # if [[ "${CI_BUILD}" == "no" ]]; then
++  #   . ./stores/snapcraft/build.sh
+ 
+-    if [[ "${SKIP_ASSETS}" == "no" ]]; then
+-      mv stores/snapcraft/build/*.snap assets/
+-    fi
+-  fi
++  #   if [[ "${SKIP_ASSETS}" == "no" ]]; then
++  #     mv stores/snapcraft/build/*.snap assets/
++  #   fi
++  # fi
+ 
+   if [[ "${SHOULD_BUILD_TAR}" != "no" ]]; then
+     echo "Building and moving TAR"

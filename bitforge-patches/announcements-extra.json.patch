@@ -1,0 +1,15 @@
+diff --git a/announcements-extra.json b/announcements-extra.json
+index 8c99123..79ab51f 100644
+--- a/announcements-extra.json
++++ b/announcements-extra.json
+@@ -1,7 +1,7 @@
+ [
+   {
+-    "id": "#2358",
+-    "title": "Wanted! Feedback for new website :)",
+-    "url": "https://github.com/VSCodium/vscodium/discussions/2358"
++    "id": "#1",
++    "title": "Feedback for IDE",
++    "url": "https://github.com/SoC-One/BitForge"
+   }
+ ]

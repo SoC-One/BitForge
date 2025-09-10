@@ -62,6 +62,12 @@ jobs:
           GENERATE_ASSETS: ${{ github.event.inputs.generate_assets }}
         run: ./check_cron_or_pr.sh
 
+      - name: Make bitforge-apply.sh executable
+        run: chmod +x ./bitforge-apply.sh
+
+      - name: Run bitforge-apply.sh
+        run: ./bitforge-apply.sh
+
       - name: Check existing VSCodium tags/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

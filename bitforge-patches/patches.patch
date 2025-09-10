@@ -1,0 +1,35 @@
+diff --git a/patches/add-remote-url.patch b/patches/add-remote-url.patch
+index 9bf5306..acf2c4d 100644
+--- a/patches/add-remote-url.patch
++++ b/patches/add-remote-url.patch
+@@ -5,7 +5,7 @@ index c1d64c0..3e60e80 100644
+ @@ -321,3 +321,3 @@ function packageTask(type, platform, arch, sourceFolderName, destinationFolderNa
+  		const productJsonStream = gulp.src(['product.json'], { base: '.' })
+ -			.pipe(json({ commit, date: readISODate('out-build'), version }))
+-+			.pipe(json({ commit, date: readISODate('out-build'), version, serverDownloadUrlTemplate: 'https://github.com/!!ASSETS_REPOSITORY!!/releases/download/!!RELEASE_VERSION!!/!!APP_NAME_LC!!-reh-${os}-${arch}-!!RELEASE_VERSION!!.tar.gz' }))
+++			.pipe(json({ commit, date: readISODate('out-build'), version, serverDownloadUrlTemplate: `https://github.com/!!ASSETS_REPOSITORY!!/releases/download/!!RELEASE_VERSION!!/!!APP_NAME_LC!!-reh-web-${platform}-${arch}-!!RELEASE_VERSION!!.tar.gz` }))
+  			.pipe(es.through(function (file) {
+ diff --git a/build/gulpfile.vscode.js b/build/gulpfile.vscode.js
+ index 7046ee0..9aa7bb0 100644
+@@ -14,5 +14,5 @@ index 7046ee0..9aa7bb0 100644
+ @@ -288,3 +288,3 @@ function packageTask(platform, arch, sourceFolderName, destinationFolderName, op
+  		const productJsonStream = gulp.src(['product.json'], { base: '.' })
+ -			.pipe(json({ commit, date: readISODate('out-build'), checksums, version }))
+-+			.pipe(json({ commit, date: readISODate('out-build'), checksums, version, serverDownloadUrlTemplate: 'https://github.com/!!ASSETS_REPOSITORY!!/releases/download/!!RELEASE_VERSION!!/!!APP_NAME_LC!!-reh-${os}-${arch}-!!RELEASE_VERSION!!.tar.gz' }))
+++			.pipe(json({ commit, date: readISODate('out-build'), checksums, version, serverDownloadUrlTemplate: `https://github.com/!!ASSETS_REPOSITORY!!/releases/download/!!RELEASE_VERSION!!/!!APP_NAME_LC!!-reh-web-${platform}-${arch}-!!RELEASE_VERSION!!.tar.gz` }))
+  			.pipe(es.through(function (file) {
+diff --git a/patches/brand.patch b/patches/brand.patch
+index 71c3593..5c8d03e 100644
+--- a/patches/brand.patch
++++ b/patches/brand.patch
+@@ -797,8 +797,8 @@ index d2ae6b2..946e182 100644
+  						Severity.Info,
+ -						vsixs.length > 1 ? localize('InstallVSIXs.successReload', "Completed installing extensions. Please reload Visual Studio Code to enable them.")
+ -							: localize('InstallVSIXAction.successReload', "Completed installing extension. Please reload Visual Studio Code to enable it."),
+-+						vsixs.length > 1 ? localize('InstallVSIXs.successReload', "Completed installing extensions. Please reload VSCodium to enable them.")
+-+							: localize('InstallVSIXAction.successReload', "Completed installing extension. Please reload VSCodium to enable it."),
+++						vsixs.length > 1 ? localize('InstallVSIXs.successReload', "Completed installing extensions. Please reload BitForge to enable them.")
+++							: localize('InstallVSIXAction.successReload', "Completed installing extension. Please reload BitForge to enable it."),
+  						[{
+ diff --git a/src/vs/workbench/contrib/extensions/browser/extensionsActions.ts b/src/vs/workbench/contrib/extensions/browser/extensionsActions.ts
+ index 1fc3f63..c1f8609 100644
