@@ -123,6 +123,11 @@ jobs:
       - name: Clone VSCode repo
         run: ./get_repo.sh
         if: env.SHOULD_BUILD == 'yes'
+      - name: Make bitforge-apply.sh executable
+        run: chmod +x ./bitforge-apply.sh
+
+      - name: Run bitforge-apply.sh
+        run: ./bitforge-apply.sh
 
       - name: Build
         env:
