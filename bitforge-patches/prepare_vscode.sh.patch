@@ -1,8 +1,8 @@
 diff --git a/prepare_vscode.sh b/prepare_vscode.sh
-index 1182d2e..0649a69 100755
+index 1182d2e..bf3b70e 100755
 --- a/prepare_vscode.sh
 +++ b/prepare_vscode.sh
-@@ -123,77 +123,77 @@ setpath "product" "introductoryVideosUrl" "https://go.microsoft.com/fwlink/?link
+@@ -123,77 +123,78 @@ setpath "product" "introductoryVideosUrl" "https://go.microsoft.com/fwlink/?link
  setpath "product" "keyboardShortcutsUrlLinux" "https://go.microsoft.com/fwlink/?linkid=832144"
  setpath "product" "keyboardShortcutsUrlMac" "https://go.microsoft.com/fwlink/?linkid=832143"
  setpath "product" "keyboardShortcutsUrlWin" "https://go.microsoft.com/fwlink/?linkid=832145"
@@ -83,6 +83,7 @@ index 1182d2e..0649a69 100755
 +  setpath "product" "nameShort" "BitForge"
 +  setpath "product" "nameLong" "BitForge"
 +  setpath "product" "applicationName" "bitforge"
++  setpath "product" "dataFolderName" ".bitforge"
 +  setpath "product" "linuxIconName" "bitforge"
    setpath "product" "quality" "stable"
 -  setpath "product" "urlProtocol" "vscodium"
@@ -120,7 +121,7 @@ index 1182d2e..0649a69 100755
    setpath "product" "win32ContextMenu.x64.clsid" "D910D5E6-B277-4F4A-BDC5-759A34EEE25D"
    setpath "product" "win32ContextMenu.arm64.clsid" "4852FC55-4A84-4EA1-9C86-D53BE3DF83C0"
  fi
-@@ -208,16 +208,16 @@ cp package.json{,.bak}
+@@ -208,16 +209,16 @@ cp package.json{,.bak}
  
  setpath "package" "version" "${RELEASE_VERSION%-insider}"
  
@@ -142,7 +143,7 @@ index 1182d2e..0649a69 100755
  fi
  
  # announcements
-@@ -225,10 +225,10 @@ replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announce
+@@ -225,10 +226,10 @@ replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announce
  
  ../undo_telemetry.sh
  
@@ -157,7 +158,7 @@ index 1182d2e..0649a69 100755
  
  if [[ "${OS_NAME}" == "linux" ]]; then
    # microsoft adds their apt repo to sources
-@@ -236,37 +236,37 @@ if [[ "${OS_NAME}" == "linux" ]]; then
+@@ -236,37 +237,37 @@ if [[ "${OS_NAME}" == "linux" ]]; then
    # as we are renaming the application to vscodium
    # we need to edit a line in the post install template
    if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
